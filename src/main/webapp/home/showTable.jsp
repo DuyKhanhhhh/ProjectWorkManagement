@@ -261,7 +261,7 @@
                 </div>
             </div>
 
-            <p></p>
+
             <h3 style="margin-left: 160px; "><b>Table</b></h3>
             <c:forEach var="table" items="${tables}">
                 <a href="/addUserToTable?action=showTable&id=${groups.id}&idTable=${table.id}&idUser=${user.id}">

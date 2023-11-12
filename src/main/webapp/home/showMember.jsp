@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: nguyenhuugiang19072004
-  Date: 10/21/23
-  Time: 8:09 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -275,26 +268,33 @@
                         <th>Actions</th>
                     </tr>
                     <c:forEach var="member" items="${member}">
+
                         <tr>
                             <td>${member.nameUser}</td>
                             <td>${member.emailUser}</td>
                             <td>${member.role}</td>
                             <td>
-                                <div class="">
-                                    <a onclick="showConfirmation()"  style="font-size: 20px;color: black">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
-                                </div>
+
+                                    <c:if test="${table.role.equals(''Tables');                      <div class="">
+                                <a onclick="showConfirmation()" style="font-size: 20px;color: black">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+            </div>
+            </c:if>
                             </td>
+
                         </tr>
+
+
                         <script>
                             function showConfirmation() {
                                 var result = confirm("Are you sure you want to remove this member from the group?");
                                 if (result) {
-                                    window.location.href = "/homeUser?action=deleteMember&idMember=${member.id}&groupId=${groups.id}";
+                                    window.location.href = "/homeUser?action=deleteMember&idMember=${member.idMember}&groupId=${groups.id}";
                                 }
                             }
                         </script>
+
                     </c:forEach>
                 </table>
             </div>

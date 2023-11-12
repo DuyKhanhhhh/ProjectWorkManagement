@@ -30,6 +30,7 @@ public class UserDAO implements IUserDAO {
     private static final String SELECT_ALL_GROUP_MEMBER = "SELECT m.id,u.name,u.email,role FROM user u JOIN member m ON u.id = m.idUser JOIN groupWork g ON m.idGroup = g.id WHERE g.id = ?";
     private static final String SELECT_ALL_USER_TO_TABLE = "SELECT id,u.name,u.email,m.role,u.avatar FROM user u JOIN userToTable m ON u.id = m.idUser JOIN tableWork t ON m.idTable = t.id WHERE t.id = ?";
     private static final String SELECT_TABLE_IN_GROUP = "SELECT t.id ,t.name ,t.permission FROM tableWork t JOIN groupWork g ON t.idGroup=g.id WHERE g.id = ?";
+    private  static  final String  DELETE_TABLE_SQL= "DELETE userToTable, tableWork FROM userToTable JOIN tableWork ON userToTable.idTable = tableWork.id WHERE tableWork.id = ?";
 
 
 
@@ -544,5 +545,20 @@ public class UserDAO implements IUserDAO {
             throw new RuntimeException(e);
         }
         return tableList;
+    }
+    @Override
+    public boolean deleteTable(int id) {
+        boolean rowDelete;
+        try {
+            Connection connection = DataConnector.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement( DELETE_TABLE_SQL);
+            preparedStatement.setInt(1, id);
+            rowDelete = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return rowDelete;
     }
 }

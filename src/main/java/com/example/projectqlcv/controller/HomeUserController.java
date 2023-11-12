@@ -178,11 +178,17 @@ public class HomeUserController extends HttpServlet {
             case "table":
                 showTableInGroup(request,response);
                 break;
+            case "deleteTable":
+                deleteTable(request, response);
+                break;
             default:
                 selectGroupFromSql(request, response);
 
         }
     }
+
+
+
     private void showTableInGroup(HttpServletRequest request ,HttpServletResponse response){
         int idGroup =Integer.parseInt(request.getParameter("idGroup"));
         List<Table> tableList = userDAO.showTableInGroup(idGroup);
@@ -338,4 +344,25 @@ public class HomeUserController extends HttpServlet {
         request.setAttribute("group", group);
         request.getRequestDispatcher("/home/information.jsp").forward(request, response);
     }
+
+    private void deleteTable(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        int id = Integer.parseInt(request.getParameter("idTable"));
+        int idGroup = Integer.parseInt(request.getParameter("groupId"));
+        userDAO.deleteTable(id);
+
+        request.setAttribute("message", "Delete success !");
+        Table table = userDAO.findTableById(id);
+        HttpSession session = request.getSession();
+        session.setAttribute("tables", table);
+        List<Table> tables = userDAO.showTableInGroup(idGroup);
+        session.setAttribute("tables", tables);
+
+        try {
+            request.getRequestDispatcher("home/showTable.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -256,6 +256,22 @@
                     <a href="#">Services</a>
                     <a href="#">Clients</a>
                     <a href="#">Contact</a>
+
+                    <button onclick="showConfirmation()" class="btn btn-secondary" style="width: 200px">
+                        <a style="text-decoration: none;color: white"
+                           href="homeUser?action=deleteTable&idTable=${tables.id}&groupId=${groups.id}">Delete</a>
+                    </button>
+
+
+                    <script>
+                        function showConfirmation() {
+                            var result = confirm("Are you sure you want to remove this table from the group?");
+                            if (result) {
+                                window.location.href = "/homeUser?action=deleteTable&id=${tables.id}&groupId=${groups.id}";
+                            }
+                        }
+                    </script>
+
                 </div>
                 <span id="rightTitle">
           <div id="main">

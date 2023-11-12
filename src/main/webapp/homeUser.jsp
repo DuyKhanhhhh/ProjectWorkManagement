@@ -16,7 +16,13 @@
 </head>
 <style>
     body {
-        background-color: #e0e0e0;
+        background-color: #f8f9fa;
+    }
+
+    #header {
+        position: fixed;
+        background-color: #2f2f2f;
+        height: 50px;
     }
 
     .headImg {
@@ -28,28 +34,27 @@
         padding-right: 10px;
     }
 
-    #header {
-        position: fixed;
-    }
-
     #fullLeft {
         display: flex;
     }
 
     #boxLeft {
-        background-image: url("https://i.pinimg.com/236x/4e/4f/65/4e4f6521b262e4fb9664455012f741fb.jpg");
         max-height: 100%;
-        margin-top: 4%;
+        margin-top: 2.6%;
         height: 100%;
         position: fixed;
         flex: 0 0 auto;
         margin-bottom: 4%;
+        box-shadow: 2px 0 6px rgba(0, 0, 0, 1);
+        clip-path: inset(0px -10px -10px -10px);
+        background-color: #e9ecef;
     }
 
     #content {
-        margin-top: 3%;
-        margin-left: 16.5%;
-        padding-left: 2%;
+        margin-top: 1%;
+        margin-left: 16%;
+        padding-left: 3.5%;
+        margin-bottom: 9%;
     }
 
     #footer {
@@ -60,25 +65,31 @@
     }
 
     .textSpan {
-        font-size: 40px;
+        font-size: 28px;
         margin-left: 14px;
         font-weight: bold;
     }
-
+    i{
+        font-size: 25px;
+    }
     .icon {
         text-decoration: none;
         color: black;
-        margin-right: 18px;
+        margin-right: 30px;
+        padding: 4px 10px 1px 10px;
+        box-shadow: 2px 0 4px rgba(0, 0, 0, 1.5);
+        background-color: #e9ecef;
+        border-radius: 4px
     }
 
     #contentTitle {
-        margin: 36px;
+        margin-top: 48px;
     }
 
     .table {
         width: 100%;
         height: 3rem;
-        margin-top: 2rem;
+        margin-top: 1rem;
     }
 
     .group {
@@ -93,8 +104,7 @@
     }
 
     .group_add {
-        margin-left: 2rem;
-        margin-top: 1rem;
+        margin-left: 8%;
     }
 
     .d_flex_left {
@@ -107,98 +117,54 @@
         width: 50%;
         height: auto;
         float: left;
-        padding-left: 10%;
+        padding-left: 8.8%;
     }
 
     a {
         text-decoration: none;
+        color: black;
     }
-
-    h3 {
-        font-family: initial;
+    span{
+        font-size: 23px;
     }
-
-    span {
-        font-family: initial;;
-    }
-
-    .dropdown {
-        max-width: 25em;
-        position: relative;
-        width: 100%;
-    }
-
-    .dropdown-btn {
-        background: #b2b2b2;
-        font-size: 18px;
-        width: 100%;
-        border: none;
-        color: #fff;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.7em 0.5em;
-        border-radius: 0.5em;
-        cursor: pointer;
-    }
-
-    .arrow {
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 6px solid #fff;
-        transition: transform ease-in-out 0.3s;
-    }
-
+    /* Style for dropdown content */
     .dropdown-content {
-        list-style: none;
+        display: none; /* Hidden by default */
         position: absolute;
-        top: 3.2em;
-        width: 100%;
-        visibility: hidden;
-        overflow: hidden;
+        background-color: #000000;
+        min-width: 85px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+    .dropdown-content a{
+        font-size: 15px;
+        color: white;
+    }
+    /* Style for each content div */
+    .dropdown-content div {
+        padding: 10px 5px;
+        font-size: 16px;
+        text-align: center;
     }
 
-    .dropdown-content li {
-        background: #2f3238;
-        border-radius: 0.5em;
-        position: relative;
-        left: 100%;
-        transition: 0.5s;
-        transition-delay: calc(60ms * var(--delay));
+    /* Highlight dropdown options on hover */
+    .dropdown-content div:hover {
+        background-color: #cecece;
     }
 
-    .dropdown-btn:focus + .dropdown-content li {
-        left: 0;
-    }
-
-    .dropdown-btn:focus + .dropdown-content {
-        visibility: visible;
-    }
-
-    .dropdown-btn:focus > .arrow {
-        transform: rotate(180deg);
-    }
-
-    .dropdown-content li:hover {
-        background: #1d1f24;
-    }
-
-    .dropdown-content li a {
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
         display: block;
-        padding: 0.7em 0.5em;
-        color: #fff;
-        margin: 0.1em 0;
-        text-decoration: none;
     }
 
     .group_main {
         width: 100%;
-        height: 40%;
+        height: 18%;
     }
 
     .name_group {
-        width: 90%;
-        margin: 8px;
+        width: 85%;
+        margin-left:15%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -210,49 +176,43 @@
     }
 
     .groupContent {
-        margin-top: 15px;
-        width: 224px;
-        height: 160px;
+        width: 200px;
+        height: 140px;
         border-radius: 40px;
         border: 1px solid black;
         background-color: white;
         float: left;
         margin-right: 2%;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
     }
 
 </style>
 <body>
 <div class="container-fluid">
     <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="header">
+        <nav class="navbar navbar-expand-lg navbar-dark" id="header">
             <div class="container-fluid">
                 <div class="headImg">
                     <img src="https://logos-world.net/wp-content/uploads/2021/02/Trello-Logo.png"
-                         width="130px" height="60px">
+                         width="100" height="50">
                 </div>
-                <div style="width: 600px">
-                    <form class="d-flex">
-                        <input class="form-control" type="search" placeholder="Search">
-                        <button style="margin-left: 10px" class="btn btn-outline-secondary" type="submit">Search
-                        </button>
-                    </form>
-                </div>
+
                 <div class="headRight">
                     <span class="group-text">
                     <div class="collapse navbar-collapse">
-                      <i class="fa-solid fa-bell" style="color: #ffffff;font-size: 34px; margin-right: 10px"></i>
-                        <div class="dropdown">
-                            <button class="dropdown-btn" aria-haspopup="menu">
-                                <span><c:out value="${user.name}"/></span>
-                                <span class="arrow"></span>
-                            </button>
-                            <ul class="dropdown-content" role="menu">
-                                <li style="--delay: 3;"><a href="#">Setting</a></li>
-                                <li style="--delay: 1;"><a href="/homeUser?action=editUser&id=${user.id}">Edit</a></li>
-                                <li style="--delay: 2;"><a href="/updatePassword?login=updatePassword&id=${user.id}">Change PassWord</a></li>
-                                <li style="--delay: 4;"><a href="login.jsp">Logout</a></li>
-                            </ul>
-                        </div>
+                      <i class="fa-solid fa-bell" style="color: #ffffff; margin-right: 15px"></i>
+                        <span class="dropdown">
+                            <button style="font-size: 15px" class="btn btn-light"><c:out value="${user.name}"/></button>
+                            <div class="dropdown-content">
+                                <div><a href="#">Setting</a></div>
+                                <div><a href="/homeUser?action=editUser&id=${user.id}">Edit</a></div>
+                                <div><a href="/updatePassword?login=updatePassword&id=${user.id}">Change PassWord</a></div>
+                                <div><a href="login.jsp">Logout</a></div>
+                            </div>
+                        </span>
                     </div>
                     </span>
                 </div>
@@ -263,63 +223,63 @@
         <div class="col-2" id="boxLeft">
             <div class="table">
                 <div class="d-flex align-items-center">
-                    <i class="fa-solid fa-table" style="font-size: 30px"></i>
+                    <i class="fa-solid fa-table"></i>
                     <span class="textSpan">Table</span>
                 </div>
             </div>
             <div class="group">
                 <div class="d-flex  align-items-center">
                     <div class="group_name">
-                        <i class="fa-solid fa-user-group" style="font-size: 30px"></i>
+                        <i class="fa-solid fa-user-group"></i>
                         <span class="textSpan">Group</span>
                     </div>
                     <div class="group_add">
                         <a href="/homeUser?action=addGroup">
-                            <i class="fa-regular fa-square-plus" style="font-size: 30px;color: black"></i>
+                            <i class="fa-regular fa-square-plus"></i>
                         </a>
                     </div>
                 </div>
             </div>
             <c:forEach var="group" items="${groups}">
                 <div class="name_group">
-                    <h3>${group.name}</h3>
+                    <span>${group.name}</span>
                 </div>
             </c:forEach>
         </div>
         <div class="col-10" id="content">
             <div class="d-flex  align-items-center" id="contentTitle">
-                <i class="fa-solid fa-user-group" style="color: #000000; font-size: 30px"></i>
-                <span class="textSpan" style="color:black;">Your group</span>
+                <i class="fa-solid fa-user-group"></i>
+                <span class="textSpan">Your group</span>
             </div>
             <c:forEach var="group" items="${groups}">
-                <hr style="width: 95.5%" align="center">
+                <hr style="width: 98.3%" align="center">
                 <div class="group_main">
                     <div class="group_header">
                         <div class="d_flex_left">
                             <div class="project">
-                                <h3>${group.name}</h3>
+                                <span style="font-size: 25px">${group.name}</span>
                             </div>
                         </div>
                         <div class="d_flex_right">
                             <div class="d-flex align-items-center ml-auto">
                                 <a href="homeUser?action=updateGroup&id=${group.id}" class="icon">
-                                    <i class="fa-solid fa-table-cells" style="font-size: 30px; "></i>
-                                    <span style="font-size: 30px">Information</span>
+                                    <i class="fa-solid fa-table-cells"></i>
+                                    <span style="font-size: 20px">Information</span>
                                 </a>
 
                                 <a href="/homeUser?action=table&idGroup=${group.id}" class="icon">
-                                    <i class="fa-solid fa-table" style="font-size: 30px; "></i>
-                                    <span style="font-size: 30px">Table</span>
+                                    <i class="fa-solid fa-table"></i>
+                                    <span style="font-size: 20px">Table</span>
                                 </a>
 
                                 <a href="/homeUser?action=member&idGroup=${group.id}" class="icon">
-                                    <i class="fa-solid fa-user-group" style="font-size: 30px"></i>
-                                    <span style="font-size: 30px">Member</span>
+                                    <i class="fa-solid fa-user-group" ></i>
+                                    <span style="font-size: 20px">Member</span>
                                 </a>
 
                                 <a href="#" class="icon">
-                                    <i class="fa-solid fa-gear" style="font-size: 30px"></i>
-                                    <span style="font-size: 30px">Setting</span>
+                                    <i class="fa-solid fa-gear" ></i>
+                                    <span style="font-size: 20px">Setting</span>
                                 </a>
                             </div>
                         </div>
@@ -338,23 +298,20 @@
                         <div class="table_create">
                             <h4 style="text-align: center;margin-top: 33%"><c:out value="${listTable.name}"/></h4>
                         </div>
-                        <a href="/homeUser?action=addTableToSQL&id=${group.id}" style="text-decoration: none; color: black">
+                        <a href="/homeUser?action=addTableToSQL&id=${group.id}"
+                           style="text-decoration: none; color: black">
                             <div class="table_create">
-                                <h4 style="text-align: center;margin-top: 33%;color: #646464">Create a table</h4>
+                                <span style="text-align: center;font-size: 110px">+</span>
                             </div>
                         </a>
                     </div>
                 </div>
             </c:forEach>
-            <div class="d-flex  align-items-center" style="padding-top: 3%;padding-bottom: 10%;">
-                <i class="fa-solid fa-user-group" style="color: #000000; font-size: 30px"></i>
-                <span class="textSpan" style="color: black">Members of Groups</span>
-            </div>
         </div>
     </div>
     <div class="bg-light py-2" id="footer">
         <div class="container text-center">
-            <p class="text-muted mb-0 py-1">© 2023 Trello Group 7.</p>
+            <p class="text-muted mb-0 py-1">© 2023 Trello Group 7</p>
         </div>
     </div>
 </div>

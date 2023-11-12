@@ -41,4 +41,7 @@ public interface IUserDAO {
     boolean deleteMember(int id);
     void addUserToTable(int idTable, User user);
     void addAdminToTable(int idTable, User user);
+
+
+    boolean deleteTable(int id);
 }
