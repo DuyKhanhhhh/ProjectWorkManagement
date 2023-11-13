@@ -354,39 +354,37 @@
     <div class="row">
         <div class="title">
             <div id="nameTable">
-
-
-
-                <form id="edit"  action="/addUserToTable" method="post">
-                    <input name="nameUpdate" type="text" class="title" id="title" value="${tables.name}" style="border: none">
+                <form id="edit" action="/addUserToTable" method="post">
+                    <input name="nameUpdate" type="text" class="title" id="title" value="${tables.name}"
+                           style="border: none">
                     <input name="action" value="editNameTable" type="hidden">
                     <input name="idTable" value="${tables.id}" type="hidden">
-                    <input type="submit" class="button" id="buttonEdit" style="display: none ; border: none " hidden="hidden">
+                    <input type="submit" class="button" id="buttonEdit" style="display: none ; border: none "
+                           hidden="hidden">
                 </form>
-
                 <script>
                     const inputElement = document.getElementById("title");
                     const inputValue = document.getElementById("buttonEdit")
 
 
-                    inputElement.addEventListener("dblclick", function() {
+                    inputElement.addEventListener("dblclick", function () {
                         inputElement.disabled = false;
                         inputElement.focus();
                     });
 
-                    inputElement.addEventListener("keyup", function(event) {
+                    inputElement.addEventListener("keyup", function (event) {
                         if (event.keyCode === 13) {
                             inputElement.disabled = true;
                             editName();
                         }
                     });
 
-                    inputElement.addEventListener("blur", function() {
+                    inputElement.addEventListener("blur", function () {
                         inputElement.disabled = true;
                         editName();
                     });
 
-                    function editName(){
+                    function editName() {
                         document.getElementById("submit").click();
                     }
 
@@ -441,36 +439,29 @@
             </form>
         </div>
 
-
-
         <c:forEach items="${listColumn}" var="listColumn">
-            <%--            <c:if test="${table.id eq listColumn.idTable}">--%>
-            <div id="formDelete" class="formDelete">
-                <a href="/column?action=delete&id=${listColumn.id}">
-                    <span class="closebtn" onclick="closeFormDelete()">&times;</span>
-                    <input type="submit" class="btn btn-primary" value="Delete">
-                </a>
-            </div>
-            <div class="columnContent">
-                <div class="contentTable">
-                    <span>${listColumn.name}</span>
-                    <div onclick="openFormDelete()">
-                        <i class="fa-solid fa-ellipsis-vertical" style="color: #000000;"></i>
+            <c:if test="${tables.id eq listColumn.idTable}">
+                <div id="formDelete" class="formDelete">
+                    <a href="/column?action=delete&id=${listColumn.id}">
+                        <span class="closebtn" onclick="closeFormDelete()">&times;</span>
+                        <input type="submit" class="btn btn-primary" value="Delete">
+                    </a>
+                </div>
+                <div class="columnContent">
+                    <div class="contentTable">
+                        <span>${listColumn.name}</span>
+                        <div onclick="openFormDelete()">
+                            <i class="fa-solid fa-ellipsis-vertical" style="color: #000000;"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <%--            </c:if>--%>
+            </c:if>
         </c:forEach>
         <div class="boxAdd" onclick="openForm()">
             <span style="font-size: 20px">+ Add list</span>
         </div>
     </div>
 
-    <div class="bg-light py-2" id="footer">
-        <div class="container text-center">
-            <p class="text-muted mb-0 py-1">©2023 Trello Group 7</p>
-        </div>
-    </div>
 </div>
 <script>
 
@@ -488,7 +479,8 @@
 
     function closeForm() {
         document.getElementById("formAdd").style.display = "none";
-     
+    }
+
     function showConfirmation() {
         var result = confirm("Are you sure you want to remove this table ?");
         if (result) {
@@ -533,7 +525,6 @@
 
     function resizeInput() {
         this.style.width = this.value.length + "ch";
-    }
     }
 </script>
 </body>
