@@ -22,7 +22,7 @@ public class AddMemberToGroupController extends HttpServlet {
     private IUserDAO iUserDAO;
 
     @Override
-    public void init(){
+    public void init() {
         iUserDAO = new UserDAO();
     }
 
@@ -43,17 +43,20 @@ public class AddMemberToGroupController extends HttpServlet {
     private void updatePermissionMember(HttpServletRequest request, HttpServletResponse response) {
         int idUser = Integer.parseInt(request.getParameter("idUser"));
         int idMember = Integer.parseInt(request.getParameter("idMember"));
-        Member member = iUserDAO.findMemberById(idMember);
+        int idGroup = Integer.parseInt(request.getParameter("idGroup"));
         Member roleMember = iUserDAO.findRoleUserToMember(idUser);
-        request.setAttribute("roleMember",roleMember);
-           iUserDAO.updatePermissionMember(idMember);
-           request.setAttribute("member", member);
+        HttpSession session = request.getSession();
+        request.setAttribute("roleMember", roleMember);
+        iUserDAO.updatePermissionMember(idMember);
+        List<Member> member = iUserDAO.selectGroupMember(idGroup);
+        session.setAttribute("member", member);
         try {
             request.getRequestDispatcher("home/showMember.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             throw new RuntimeException(e);
         }
     }
+
     private void addUserToGroup(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         int idGroup = Integer.parseInt(request.getParameter("idGroup"));
@@ -101,12 +104,13 @@ public class AddMemberToGroupController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
     private void deleteMember(HttpServletRequest request, HttpServletResponse response) {
         int idUser = Integer.parseInt(request.getParameter("idUser"));
         int idMember = Integer.parseInt(request.getParameter("idMember"));
         int idGroup = Integer.parseInt(request.getParameter("groupId"));
         Member roleMember = iUserDAO.findRoleUserToMember(idUser);
-        if ((roleMember.getRole()).equals("Admin")){
+        if ((roleMember.getRole()).equals("Admin")) {
             iUserDAO.deleteMember(idMember);
             request.setAttribute("message", "Delete success !");
             Group group = iUserDAO.findGroupById(idGroup);
