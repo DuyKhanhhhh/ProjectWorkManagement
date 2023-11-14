@@ -33,6 +33,7 @@
         text-align: right;
         padding-right: 10px;
     }
+
     a {
         text-decoration: none;
         color: black;
@@ -73,6 +74,7 @@
     .dropdown:hover .dropdown-content {
         display: block;
     }
+
     .title {
         margin-top: 2.6%;
         background-color: #b2b2b2;
@@ -239,13 +241,15 @@
         padding-left: 5px;
         word-wrap: break-word;
     }
-    .nav{
+
+    .nav {
         color: #000000;
         margin-top: 1px;
         margin-left: 10px;
-        cursor:pointer;
+        cursor: pointer;
     }
-    #nameTable{
+
+    #nameTable {
         margin-top: 5px;
         border: none;
         font-size: 20px;
@@ -285,14 +289,21 @@
     <div class="row">
         <div class="title">
             <div id="nameTable">
-                <form id="edit" action="/addUserToTable" method="post">
-                    <input name="nameUpdate" type="text" class="title" id="title" value="${tables.name}"
-                           style="border: none">
-                    <input name="action" value="editNameTable" type="hidden">
-                    <input name="idTable" value="${tables.id}" type="hidden">
-                    <input type="submit" class="button" id="buttonEdit" style="display: none ; border: none "
-                           hidden="hidden">
-                </form>
+                <c:choose>
+                    <c:when test="${(roleUser.role).equals('Admin')}">
+                        <form id="edit" action="/addUserToTable" method="post">
+                            <input name="nameUpdate" type="text" class="title" id="title" value="${tables.name}"
+                                   style="border: none">
+                            <input name="action" value="editNameTable" type="hidden">
+                            <input name="idTable" value="${tables.id}" type="hidden">
+                            <input type="submit" class="button" id="buttonEdit" style="display: none ; border: none "
+                                   hidden="hidden">
+                        </form>
+                    </c:when>
+                    <c:when test="${(roleUser.role).equals('User')}">
+                        <label>${tables.name}</label>
+                    </c:when>
+                </c:choose>
             </div>
             <div class="titleRight">
                 <div id="setting" class="sidenav">
@@ -347,12 +358,21 @@
                     </a>
                 </div>
                 <div class="columnContent">
-                    <div class="contentTable">
-                        <span>${listColumn.name}</span>
-                        <div onclick="openFormDelete()">
-                            <i class="fa-solid fa-ellipsis-vertical" style="color: #000000;"></i>
+                    <form id="editColumn" action="/addUserToTable" method="post">
+
+                        <div class="contentTable">
+                            <input name="nameColumnUpdate" type="text" class="title" id="titleColumn" value="${listColumn.name}"
+                                   style="border: none">
+                            <div onclick="openFormDelete()">
+                                <i class="fa-solid fa-ellipsis-vertical" style="color: #000000;"></i>
+                            </div>
                         </div>
-                    </div>
+                        <input name="action" value="editNameColumn" type="hidden">
+                        <input name="idColumn" value="${listColumn.id}" type="hidden">
+                        <input type="submit" class="button" id="buttonColumn" style="display: none ; border: none "
+                               hidden="hidden">
+
+                    </form>
                 </div>
             </c:if>
         </c:forEach>
@@ -396,6 +416,7 @@
 
     const inputElement = document.getElementById("title");
     const inputValue = document.getElementById("buttonEdit")
+    const inputColumn = document.getElementById("buttonColumn")
 
 
     inputElement.addEventListener("dblclick", function () {
@@ -416,6 +437,9 @@
     });
 
     function editName() {
+        document.getElementById("submit").click();
+    }
+    function editColumn(){
         document.getElementById("submit").click();
     }
 
