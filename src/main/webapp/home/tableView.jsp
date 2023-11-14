@@ -292,8 +292,10 @@
                 <c:choose>
                     <c:when test="${(roleUser.role).equals('Admin')}">
                         <form id="edit" action="/addUserToTable" method="post">
-                            <input name="nameUpdate" type="text" class="title" id="title" value="${tables.name}"
-                                   style="border: none">
+                            <a>
+                                <input name="nameUpdate" type="text" class="title" id="title" value="${tables.name}"
+                                       style="border: none">
+                            </a>
                             <input name="action" value="editNameTable" type="hidden">
                             <input name="idTable" value="${tables.id}" type="hidden">
                             <input type="submit" class="button" id="buttonEdit" style="display: none ; border: none "
@@ -361,8 +363,8 @@
                     <form id="editColumn" action="/addUserToTable" method="post">
 
                         <div class="contentTable">
-                            <input name="nameColumnUpdate" type="text" class="title" id="titleColumn" value="${listColumn.name}"
-                                   style="border: none">
+                            <input name="nameColumnUpdate" type="text" class="titleColumn" id="titleColumn" value="${listColumn.name}"
+                                   style="border: none; max-width: 220px">
                             <div onclick="openFormDelete()">
                                 <i class="fa-solid fa-ellipsis-vertical" style="color: #000000;"></i>
                             </div>
@@ -371,7 +373,6 @@
                         <input name="idColumn" value="${listColumn.id}" type="hidden">
                         <input type="submit" class="button" id="buttonColumn" style="display: none ; border: none "
                                hidden="hidden">
-
                     </form>
                 </div>
             </c:if>
@@ -381,6 +382,14 @@
         </div>
     </div>
 </div>
+<script>
+    function lockInput(input) {
+        input.readOnly = true; // Khóa trạng thái chỉ đọc
+    }
+    function unlockInput(input) {
+        input.readOnly = false; // Mở khóa trạng thái chỉ đọc
+    }
+</script>
 <script>
 
     function openFormDelete() {
@@ -416,6 +425,8 @@
 
     const inputElement = document.getElementById("title");
     const inputValue = document.getElementById("buttonEdit")
+
+    const inputTitle = document.getElementById("titleColumn")
     const inputColumn = document.getElementById("buttonColumn")
 
 
@@ -436,11 +447,38 @@
         editName();
     });
 
+
+
+    inputTitle.addEventListener("click", function (){
+        lockInput(inputTitle);
+    })
+
+    inputTitle.addEventListener("dblclick", function () {
+        inputTitle.disabled = false;
+        lockInput(inputTitle)
+        inputTitle.focus();
+
+    });
+
+    inputTitle.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            inputTitle.disabled = true;
+            editColumn();
+        }
+    });
+
+    inputTitle.addEventListener("blur", function () {
+        inputTitle.disabled = true;
+        editColumn();
+    });
+
+
+
     function editName() {
-        document.getElementById("submit").click();
+        document.getElementById("buttonEdit").click();
     }
     function editColumn(){
-        document.getElementById("submit").click();
+        document.getElementById("buttonColumn").click();
     }
 
     input.addEventListener('input', resizeInput);
@@ -449,6 +487,7 @@
     function resizeInput() {
         this.style.width = this.value.length + "ch";
     }
+
 </script>
 </body>
 </html>

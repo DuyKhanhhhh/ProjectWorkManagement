@@ -40,6 +40,20 @@ public class AddUserToTableController extends HttpServlet {
             case "editNameTable":
                 editNameToTable(request,response);
                 break;
+            case "editNameColumn":
+                editNameToColumn(request,response);
+                break;
+        }
+    }
+
+    private void editNameToColumn(HttpServletRequest request, HttpServletResponse response) {
+        int idColumn = Integer.parseInt(request.getParameter("idColumn"));
+        String nameUpdate = request.getParameter("nameColumnUpdate");
+        userDAO.editNameColumn(idColumn,nameUpdate);
+        try {
+            response.sendRedirect("/column");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -188,16 +202,14 @@ public class AddUserToTableController extends HttpServlet {
     }
 
     private void editNameToTable(HttpServletRequest request, HttpServletResponse response) {
-        int idTable =Integer.parseInt(request.getParameter("idTable"));
+        int idTable = Integer.parseInt(request.getParameter("idTable"));
         String nameUpdate = request.getParameter("nameUpdate");
-        userDAO.editNameTable(idTable,nameUpdate);
+        userDAO.editNameTable(idTable, nameUpdate);
         Table table = userDAO.findTableById(idTable);
         HttpSession session = request.getSession();
-        session.setAttribute("tables",table);
+        session.setAttribute("tables", table);
         try {
-            request.getRequestDispatcher("/column").forward(request,response);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
+            response.sendRedirect("/column");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

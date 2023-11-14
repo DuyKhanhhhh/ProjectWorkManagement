@@ -51,5 +51,5 @@ public interface IUserDAO {
     boolean deleteIdTable(int idTable);
     AddUserToTable findUserToTableById(int idTable);
     AddUserToTable findRoleUserToUserToTable(int idUser);
-
+    boolean editNameColumn(int idColumn, String nameUpdate);
 }
