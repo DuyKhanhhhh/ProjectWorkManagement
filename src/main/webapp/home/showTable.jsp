@@ -16,7 +16,13 @@
 </head>
 <style>
     body {
-        background-color: white;
+        background-color: #f8f9fa;
+    }
+
+    #header {
+        position: fixed;
+        background-color: #2f2f2f;
+        height: 50px;
     }
 
     .headImg {
@@ -28,107 +34,61 @@
         padding-right: 10px;
     }
 
-    #header {
-        height: 70px;
-        position: fixed;
-        background-color: #2f2f2f;
-        border-bottom: solid #d4d0d0 1px;
-    }
-
     #fullLeft {
         display: flex;
     }
 
     #content {
-        margin-top: 5%;
+        padding-top: 5%;
+        margin-top: 1%;
+        margin-left: -2%;
+        padding-left: 3.5%;
+        margin-bottom: 9%;
     }
 
-    #footer {
-        bottom: 0;
-        left: 0;
-        right: 0;
-        position: fixed;
+    i {
+        font-size: 25px;
     }
 
     a {
         text-decoration: none;
-    }
-
-    h3 {
-        font-family: initial;
+        color: black;
     }
 
     span {
-        font-family: initial;;
+        font-size: 23px;
     }
 
-    .dropdown {
-        max-width: 25em;
-        position: relative;
-        width: 100%;
-    }
-
-    .dropdown-btn {
-        background: #b2b2b2;
-        font-size: 18px;
-        width: 100%;
-        border: none;
-        color: #fff;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.7em 0.5em;
-        border-radius: 0.5em;
-        cursor: pointer;
-    }
-
-    .arrow {
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 6px solid #fff;
-        transition: transform ease-in-out 0.3s;
-    }
-
+    /* Style for dropdown content */
     .dropdown-content {
-        list-style: none;
+        display: none; /* Hidden by default */
         position: absolute;
-        top: 3.2em;
-        width: 100%;
-        visibility: hidden;
-        overflow: hidden;
+        background-color: #000000;
+        min-width: 85px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
     }
 
-    .dropdown-content li {
-        background: #2f3238;
-        border-radius: 0.5em;
-        position: relative;
-        left: 100%;
-        transition: 0.5s;
-        transition-delay: calc(60ms * var(--delay));
+    .dropdown-content a {
+        font-size: 15px;
+        color: white;
     }
 
-    .dropdown-btn:focus + .dropdown-content li {
-        left: 0;
+    /* Style for each content div */
+    .dropdown-content div {
+        padding: 10px 5px;
+        font-size: 16px;
+        text-align: center;
     }
 
-    .dropdown-btn:focus + .dropdown-content {
-        visibility: visible;
+    /* Highlight dropdown options on hover */
+    .dropdown-content div:hover {
+        background-color: #cecece;
     }
 
-    .dropdown-btn:focus > .arrow {
-        transform: rotate(180deg);
-    }
-
-    .dropdown-content li:hover {
-        background: #1d1f24;
-    }
-
-    .dropdown-content li a {
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
         display: block;
-        padding: 0.7em 0.5em;
-        color: #fff;
-        margin: 0.1em 0;
-        text-decoration: none;
     }
 
     #member {
@@ -171,32 +131,32 @@
     #permission{
         margin-left: 120px;
     }
+
+
 </style>
 <body>
 <div class="container-fluid">
     <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-dark " id="header">
+        <nav class="navbar navbar-expand-lg navbar-dark" id="header">
             <div class="container-fluid">
                 <div class="headImg">
                     <img src="https://logos-world.net/wp-content/uploads/2021/02/Trello-Logo.png"
-                         width="130px" height="60px">
+                         width="100" height="50">
                 </div>
+
                 <div class="headRight">
                     <span class="group-text">
                     <div class="collapse navbar-collapse">
-                      <i class="fa-solid fa-bell" style="color: #ffffff;font-size: 34px; margin-right: 10px"></i>
-                        <div class="dropdown">
-                            <button class="dropdown-btn" aria-haspopup="menu">
-                                <span><c:out value="${user.name}"/></span>
-                                <span class="arrow"></span>
-                            </button>
-                            <ul class="dropdown-content" role="menu">
-                                <li style="--delay: 3;"><a href="#">Setting</a></li>
-                                <li style="--delay: 1;"><a href="/homeUser?action=editUser&id=${user.id}">Edit</a></li>
-                                <li style="--delay: 2;"><a href="/updatePassword?login=updatePassword&id=${user.id}">Change PassWord</a></li>
-                                <li style="--delay: 4;"><a href="login.jsp">Logout</a></li>
-                            </ul>
-                        </div>
+                      <i class="fa-solid fa-bell" style="color: #ffffff; margin-right: 15px"></i>
+                        <span class="dropdown">
+                            <button style="font-size: 15px" class="btn btn-light"><c:out value="${user.name}"/></button>
+                            <div class="dropdown-content">
+                                <div><a href="#">Setting</a></div>
+                                <div><a href="/homeUser?action=editUser&id=${user.id}">Edit</a></div>
+                                <div><a href="/updatePassword?login=updatePassword&id=${user.id}">Change PassWord</a></div>
+                                <div><a href="login.jsp">Logout</a></div>
+                            </div>
+                        </span>
                     </div>
                     </span>
                 </div>
@@ -257,11 +217,6 @@
                 </a>
             </c:forEach>
 
-        </div>
-    </div>
-    <div class="bg-light py-2" id="footer">
-        <div class="container text-center">
-            <p class="text-muted mb-0 py-1">© 2023 Trello Group 7</p>
         </div>
     </div>
 </div>

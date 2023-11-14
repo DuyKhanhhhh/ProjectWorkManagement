@@ -190,7 +190,6 @@
         float: left;
         margin-right: 2%;
         display: flex;
-        flex-direction: column-reverse;
         align-items: center;
         justify-content: center;
     }
@@ -317,11 +316,6 @@
                     </div>
                 </div>
             </c:forEach>
-        </div>
-    </div>
-    <div class="bg-light py-2" id="footer">
-        <div class="container text-center">
-            <p class="text-muted mb-0 py-1">© 2023 Trello Group 7</p>
         </div>
     </div>
 </div>

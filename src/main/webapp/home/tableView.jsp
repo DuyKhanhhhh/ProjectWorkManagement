@@ -13,12 +13,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/892d14366e.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Play&amp;display=swap" rel="stylesheet">
 </head>
 <style>
     body {
-        background-color: #e0e0e0;
+        background-color: #f8f9fa;
+    }
+
+    #header {
+        position: fixed;
+        background-color: #2f2f2f;
+        height: 50px;
     }
 
     .headImg {
@@ -29,164 +33,91 @@
         text-align: right;
         padding-right: 10px;
     }
-
-    #header {
-        position: fixed;
-    }
-
-    #fullLeft {
-        display: flex;
-    }
-
-    #footer {
-        bottom: 0;
-        left: 0;
-        right: 0;
-        position: fixed;
-    }
-
     a {
         text-decoration: none;
-    }
-
-    h3 {
-        font-family: initial;
+        color: black;
     }
 
     span {
-        font-family: initial;;
+        font-size: 23px;
     }
 
-    .dropdown {
-        max-width: 25em;
-        position: relative;
-        width: 100%;
+    /* Style for dropdown content */
+    .dropdown-content {
+        display: none; /* Hidden by default */
+        position: absolute;
+        background-color: #000000;
+        min-width: 85px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
     }
 
-    .dropdown-btn {
-        background: #b2b2b2;
-        font-size: 18px;
-        width: 100%;
-        border: none;
-        color: #fff;
+    .dropdown-content a {
+        font-size: 15px;
+        color: white;
+    }
+
+    /* Style for each content div */
+    .dropdown-content div {
+        padding: 10px 5px;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    /* Highlight dropdown options on hover */
+    .dropdown-content div:hover {
+        background-color: #cecece;
+    }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    .title {
+        margin-top: 2.6%;
+        background-color: #b2b2b2;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.7em 0.5em;
-        border-radius: 0.5em;
-        cursor: pointer;
-    }
-
-    .arrow {
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 6px solid #fff;
-        transition: transform ease-in-out 0.3s;
-    }
-
-    .dropdown-content {
-        list-style: none;
-        position: absolute;
-        top: 3.2em;
-        width: 100%;
-        visibility: hidden;
-        overflow: hidden;
-    }
-
-    .dropdown-content li {
-        background: #2f3238;
-        border-radius: 0.5em;
-        position: relative;
-        left: 100%;
-        transition: 0.5s;
-        transition-delay: calc(60ms * var(--delay));
-    }
-
-    .dropdown-btn:focus + .dropdown-content li {
-        left: 0;
-    }
-
-    .dropdown-btn:focus + .dropdown-content {
-        visibility: visible;
-    }
-
-    .dropdown-btn:focus > .arrow {
-        transform: rotate(180deg);
-    }
-
-    .dropdown-content li:hover {
-        background: #1d1f24;
-    }
-
-    .dropdown-content li a {
-        display: block;
-        padding: 0.7em 0.5em;
-        color: #fff;
-        margin: 0.1em 0;
-        text-decoration: none;
-    }
-
-    .title {
-        margin-top: 3.9%;
-        background-color: #b2b2b2;
-        height: 35%;
     }
 
     .titleRight {
         float: right;
     }
 
-    .sidebar {
-        height: 100%;
+    .sidenav {
+        display: none;
+        height: 36%;
+        width: 222px;
         position: fixed;
+        z-index: 1;
         right: 0;
-        background-color: #000;
+        background-color: #8c8c8c;
         overflow-x: hidden;
         transition: 0.5s;
-        padding-top: 50px;
+        padding-top: 60px;
+        margin-top: -13px;
     }
 
-    .sidebar a {
-        padding: 14px 8px 5px 30px;
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
         text-decoration: none;
-        font-size: 23px;
-        color: white;
+        font-size: 25px;
+        color: #ffffff;
         display: block;
         transition: 0.3s;
     }
 
-    .sidebar a:hover {
+    .sidenav a:hover {
         color: #f1f1f1;
     }
 
-    .sidebar .closebtn {
+    .sidenav .closebtn {
         position: absolute;
         top: 0;
         right: 25px;
         font-size: 36px;
         margin-left: 50px;
-
-    }
-
-    #main {
-        transition: margin-left .5s;
-        padding: 16px;
-        float: left;
-    }
-
-    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-    @media screen and (max-height: 400px) {
-        .sidebar {
-            padding-top: 15px;
-        }
-
-        .sidebar a {
-            font-size: 10px;
-        }
-    }
-
-    #text {
-        font-size: 33px;
     }
 
     #rightTitle {
@@ -221,7 +152,7 @@
         display: none;
         width: 260px;
         position: fixed;
-        background-color: #fff;
+        background-color: #e9ecef;
         overflow-x: hidden;
         padding-top: 30px;
         margin: 18px;
@@ -241,22 +172,21 @@
     .formAdd .closebtn {
         position: absolute;
         top: 0;
-        right: 0px;
+        right: 12px;
         font-size: 36px;
-        margin-top: -25px;
+        margin-top: -12px;
     }
 
     .formDelete {
         display: none;
         width: 260px;
         position: fixed;
-        background-color: #fff;
+        background-color: #e9ecef;
         overflow-x: hidden;
-        padding-top: 30px;
-        margin: 18px;
+        padding-top: 24px;
         border-radius: 7px;
-        top: 23%;
-        left: 50%;
+        top: 20%;
+        left: 40%;
     }
 
     .formDelete a {
@@ -275,30 +205,21 @@
         margin-top: -25px;
     }
 
-    .boxDelete {
-        width: 260px;
-        height: 45px;
-        border-radius: 7px;
-        background-color: white;
-        margin-top: 10px;
-        margin-left: 15px;
-    }
-
     .boxAdd {
         width: 260px;
         height: 45px;
         border-radius: 7px;
-        background-color: white;
+        background-color: #e9ecef;
         margin-top: 10px;
         margin-left: 15px;
     }
 
     .columnContent {
         width: 260px;
-        height: 680px;
+        height: 820px;
         border-radius: 7px;
         border: 1px solid black;
-        background-color: white;
+        background-color: #e9ecef;
         float: left;
         margin-top: 10px;
         margin-left: 15px;
@@ -309,8 +230,8 @@
         border: 1px solid;
         background: darkgray;
         display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
+        justify-content: space-between;
+        align-items: center;
         border-radius: 5px;
         margin-top: 8px;
         font-size: 20px;
@@ -318,35 +239,45 @@
         padding-left: 5px;
         word-wrap: break-word;
     }
-
+    .nav{
+        color: #000000;
+        margin-top: 1px;
+        margin-left: 10px;
+        cursor:pointer;
+    }
+    #nameTable{
+        margin-top: 5px;
+        border: none;
+        font-size: 20px;
+    }
 </style>
 <body>
 <div class="container-fluid">
     <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="header">
+        <nav class="navbar navbar-expand-lg navbar-dark" id="header">
             <div class="container-fluid">
                 <div class="headImg">
-                    <img src="https://logos-world.net/wp-content/uploads/2021/02/Trello-Logo.png"
-                         width="130px" height="60px">
+                    <a href="/homeUser">
+                        <img src="https://logos-world.net/wp-content/uploads/2021/02/Trello-Logo.png"
+                             width="100" height="50">
+                    </a>
                 </div>
+
                 <div class="headRight">
-          <span class="group-text">
-            <div class="collapse navbar-collapse">
-              <i class="fa-solid fa-bell" style="color: #ffffff;font-size: 34px; margin-right: 10px"></i>
-              <div class="dropdown">
-                <button class="dropdown-btn" aria-haspopup="menu">
-                  <span><c:out value="${user.name}"/></span>
-                  <span class="arrow"></span>
-                  </button>
-                    <ul class="dropdown-content" role="menu">
-                      <li style="--delay: 3;"><a href="#">Setting</a></li>
-                      <li style="--delay: 1;"><a href="/homeUser?action=editUser&id=${user.id}">Edit</a></li>
-                      <li style="--delay: 2;"><a href="/updatePassword?login=updatePassword&id=${user.id}">Change PassWord</a></li>
-                      <li style="--delay: 4;"><a href="login.jsp">Logout</a></li>
-                    </ul>
-              </div>
-            </div>
-          </span>
+                    <span class="group-text">
+                    <div class="collapse navbar-collapse">
+                      <i class="fa-solid fa-bell" style="color: #ffffff; margin-right: 15px"></i>
+                        <span class="dropdown">
+                            <button style="font-size: 15px" class="btn btn-light"><c:out value="${user.name}"/></button>
+                            <div class="dropdown-content">
+                                <div><a href="#">Setting</a></div>
+                                <div><a href="/homeUser?action=editUser&id=${user.id}">Edit</a></div>
+                                <div><a href="/updatePassword?login=updatePassword&id=${user.id}">Change PassWord</a></div>
+                                <div><a href="login.jsp">Logout</a></div>
+                            </div>
+                        </span>
+                    </div>
+                    </span>
                 </div>
             </div>
         </nav>
@@ -362,42 +293,9 @@
                     <input type="submit" class="button" id="buttonEdit" style="display: none ; border: none "
                            hidden="hidden">
                 </form>
-                <script>
-                    const inputElement = document.getElementById("title");
-                    const inputValue = document.getElementById("buttonEdit")
-
-
-                    inputElement.addEventListener("dblclick", function () {
-                        inputElement.disabled = false;
-                        inputElement.focus();
-                    });
-
-                    inputElement.addEventListener("keyup", function (event) {
-                        if (event.keyCode === 13) {
-                            inputElement.disabled = true;
-                            editName();
-                        }
-                    });
-
-                    inputElement.addEventListener("blur", function () {
-                        inputElement.disabled = true;
-                        editName();
-                    });
-
-                    function editName() {
-                        document.getElementById("submit").click();
-                    }
-
-                    input.addEventListener('input', resizeInput);
-                    resizeInput.call(input);
-
-                    function resizeInput() {
-                        this.style.width = this.value.length + "ch";
-                    }
-                </script>
             </div>
             <div class="titleRight">
-                <div id="mySidebar" class="sidebar">
+                <div id="setting" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                     <h2 style="text-align: center;color: white">Menu</h2>
                     <hr style="color:white;">
@@ -412,9 +310,10 @@
                     </c:if>
                 </div>
                 <span id="rightTitle">
-                    <div id="main">
-                        <span onclick="openNav()"><i class="fa-solid fa-bars"
-                                                     style="color: #000000;font-size: 28px"></i></span>
+                    <div class="nav">
+                     <span onclick="openNav()">
+                         <i class="fa-solid fa-bars" style="font-size: 35px"></i>
+                     </span>
                     </div>
                     <div class="member">
                         <c:forEach var="userToTable" items="${userToTable}">
@@ -461,7 +360,6 @@
             <span style="font-size: 20px">+ Add list</span>
         </div>
     </div>
-
 </div>
 <script>
 
@@ -489,17 +387,15 @@
     }
 
     function openNav() {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
+        document.getElementById("setting").style.display = "block";
     }
 
     function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginLeft = "0";
+        document.getElementById("setting").style.display = "none";
     }
 
     const inputElement = document.getElementById("title");
-    const inputValue = document.getElementById("button")
+    const inputValue = document.getElementById("buttonEdit")
 
 
     inputElement.addEventListener("dblclick", function () {
@@ -510,15 +406,18 @@
     inputElement.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             inputElement.disabled = true;
-            inputValue.onclick;
+            editName();
         }
     });
 
     inputElement.addEventListener("blur", function () {
         inputElement.disabled = true;
-        inputValue.onclick;
+        editName();
     });
 
+    function editName() {
+        document.getElementById("submit").click();
+    }
 
     input.addEventListener('input', resizeInput);
     resizeInput.call(input);

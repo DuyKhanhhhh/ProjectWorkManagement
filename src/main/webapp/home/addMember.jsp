@@ -190,7 +190,7 @@
                 <h2 style="text-align: center; margin-top: 40px">Search member </h2>
             </div>
             <p></p>
-            <a href="/homeUser?action=member&idGroup=${groups.id}&idUser${user.id}">
+            <a href="/homeUser?action=member&idGroup=${groups.id}&idUser=${user.id}">
                 <input type="submit" value="Back">
             </a>
             <div id="search">

@@ -3,6 +3,8 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/home/addMember.jsp" value="file://$PROJECT_DIR$/src/main/webapp/home" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/home/showMember.jsp" value="file://$PROJECT_DIR$/src/main/webapp/home" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/homeUser.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>
     </option>
