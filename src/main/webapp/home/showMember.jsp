@@ -401,8 +401,8 @@
                                                                 <form action="/addMembers?action=updatePermissionMember&idMember=${member.id}&idGroup=${groups.id}&idUser=${user.id}"
                                                                       method="post">
                                                                     <li>
-                                                                        <button>Admin</button>
-
+                                                                        <input type="submit" value="Admin"
+                                                                               style="border: none; font-size: 17px"/>
                                                                     </li>
                                                                 </form>
                                                             </c:when>

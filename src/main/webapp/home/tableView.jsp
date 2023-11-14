@@ -338,24 +338,23 @@
             </form>
         </div>
 
-
         <c:forEach items="${listColumn}" var="listColumn">
-            <%--            <c:if test="${table.id eq listColumn.idTable}">--%>
-            <div id="formDelete" class="formDelete">
-                <a href="/column?action=delete&id=${listColumn.id}">
-                    <span class="closebtn" onclick="closeFormDelete()">&times;</span>
-                    <input type="submit" class="btn btn-primary" value="Delete">
-                </a>
-            </div>
-            <div class="columnContent">
-                <div class="contentTable">
-                    <span>${listColumn.name}</span>
-                    <div onclick="openFormDelete()">
-                        <i class="fa-solid fa-ellipsis-vertical" style="color: #000000;margin-right: 4px;flex-wrap: inherit;"></i>
+            <c:if test="${tables.id eq listColumn.idTable}">
+                <div id="formDelete" class="formDelete">
+                    <a href="/column?action=delete&id=${listColumn.id}">
+                        <span class="closebtn" onclick="closeFormDelete()">&times;</span>
+                        <input type="submit" class="btn btn-primary" value="Delete">
+                    </a>
+                </div>
+                <div class="columnContent">
+                    <div class="contentTable">
+                        <span>${listColumn.name}</span>
+                        <div onclick="openFormDelete()">
+                            <i class="fa-solid fa-ellipsis-vertical" style="color: #000000;"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <%--            </c:if>--%>
+            </c:if>
         </c:forEach>
         <div class="boxAdd" onclick="openForm()">
             <span style="font-size: 20px">+ Add list</span>

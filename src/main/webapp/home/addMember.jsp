@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
   User: nguyenhuugiang19072004
   Date: 10/21/23
   Time: 8:09 PM
@@ -15,16 +18,6 @@
     <script src="https://kit.fontawesome.com/892d14366e.js" crossorigin="anonymous"></script>
 </head>
 <style>
-    body {
-        background-color: #f8f9fa;
-    }
-
-    #header {
-        position: fixed;
-        background-color: #2f2f2f;
-        height: 50px;
-    }
-
     .headImg {
         margin-right: 20px;
     }
@@ -34,49 +27,25 @@
         padding-right: 10px;
     }
 
-    #fullLeft {
-        display: flex;
-    }
-
     #boxLeft {
-        max-height: 100%;
-        margin-top: 2.7%;
-        height: 100%;
-        position: fixed;
-        flex: 0 0 auto;
-        margin-bottom: 4%;
-        box-shadow: 2px 0 6px rgba(0, 0, 0, 1);
-        clip-path: inset(0px -10px -10px -10px);
-        background-color: #e9ecef;
-    }
-
-    #content {
-        margin-top: 1%;
-        margin-left: 16%;
-        padding-left: 3.5%;
-        margin-bottom: 9%;
+        background-color: #b4b4b4;
+        height: 900px;
     }
 
     .textSpan {
-        font-size: 28px;
-        margin-left: 14px;
-        font-weight: bold;
-    }
-
-    i {
-        font-size: 25px;
+        font-size: 30px;
+        margin-left: 20px;
     }
 
     .table {
         width: 100%;
         height: 3rem;
-        margin-top: 1rem;
+        margin-top: 2rem;
     }
 
     .group {
         width: 100%;
         height: 3rem;
-        flex: 1 1 auto;
     }
 
     .group_name {
@@ -84,273 +53,168 @@
         height: 3rem;
     }
 
-    a {
-        text-decoration: none;
-        color: black;
+    .group_add {
+        width: 20%;
+        height: 3rem;
+        margin-left: 1rem;
+        margin-top: 1rem;
     }
 
-    span {
-        font-size: 23px;
+    .dropdown {
+        display: inline-block;
+        position: relative;
     }
 
-    /* Style for dropdown content */
-    .dropdown-content {
-        display: none; /* Hidden by default */
+    button {
+        border: none;
+        border-radius: 5px;
+        padding: 15px 20px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #ddd;
+    }
+
+    .dropdown-options {
+        display: none;
         position: absolute;
-        background-color: #000000;
-        min-width: 85px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
+        overflow: auto;
+        background-color: #646464;
+        border-radius: 5px;
+        box-shadow: 0px 10px 10px 0px rgba(255, 255, 255, 0.4);
     }
 
-    .dropdown-content a {
-        font-size: 15px;
-        color: white;
+    .dropdown:hover .dropdown-options {
+        display: block;
     }
 
-    /* Style for each content div */
-    .dropdown-content div {
-        padding: 10px 5px;
-        font-size: 16px;
+    .dropdown-options a {
+        float: left;
+        display: block;
+        color: #000000;
+        padding: 5px;
+        text-decoration: none;
+        padding: 20px 20px;
         text-align: center;
     }
 
-    /* Highlight dropdown options on hover */
-    .dropdown-content div:hover {
-        background-color: #cecece;
+    .dropdown-options a:hover {
+        color: #0a0a23;
+        background-color: #ddd;
+        border-radius: 5px;
     }
 
-    /* Show the dropdown menu on hover */
-    .dropdown:hover .dropdown-content {
-        display: block;
+    .name_group {
+        width: 90%;
+        height: 40px;
+        margin-bottom: 8px;
+        margin-left: 10%;
     }
 
     #member {
         width: 100%;
-        height: 120px;
+        height: 80px;
         border-bottom: solid black 1px;
     }
 
+    #search {
+        width: 50%;
+        margin: 80px auto;
+    }
+
     .table_all {
-        width: 90%;
+        width: 70%;
         margin: 90px auto;
     }
-
-    .name_member {
-        float: left;
-        width: 60%;
-        height: 80px;
-        margin-bottom: 35px;
-    }
-
-    .add_member {
-        width: 40%;
-        height: 80px;
-        float: left;
-        margin-top: 45px;
-        margin-bottom: 35px;
-    }
-
-    /* menu */
-    .menu-wrapper, .menu a {
-        width: 100%;
-    }
-
-    .menu::after {
-        content: '';
-        clear: both;
-        display: block;
-    }
-
-    .menu a {
-        display: block;
-        padding: 4px;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        text-decoration: none;
-        font-size: 17px;
-    }
-
-    .menu li {
-        position: relative;
-    }
-
-    .menu > li {
-        float: left;
-    }
-
-    .menu, .menu ul {
-        display: inline-block;
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-        background: white;
-    }
-
-    .menu ul li + li {
-        border-top: 1px solid #fff;
-    }
-
-    .menu ul {
-        position: absolute;
-        box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
-    }
-
-    .menu > li ul, .menu ul ul {
-        opacity: 0;
-        -webkit-transition: all 0.2s ease-in;
-        -moz-transition: all 0.2s ease-in;
-        transition: all 0.2s ease-in;
-        z-index: -1;
-        visibility: hidden;
-    }
-
-    .menu > li ul {
-        top: 130%;
-        left: 0;
-    }
-
-    .menu ul ul {
-        left: 130%;
-        top: 0;
-    }
-
-    .menu ul a {
-        width: 100px;
-    }
-
-    .menu > li:hover > ul {
-        top: 100%;
-        opacity: 1;
-        z-index: 1;
-        visibility: visible;
-    }
-
-    .menu ul > li:hover > ul {
-        left: 100%;
-        opacity: 1;
-        z-index: 1;
-        visibility: visible;
-    }
-
-    .menu-gold, .menu-gold a {
-        color: #000;
-    }
-
-    .menu-gold a:hover {
-        background-color: white;
-        color: #000;
-    }
-
-    body {
-        background-image: url("http://recruit.framgia.vn/wp-content/themes/framgia-vn/css/images/bg/banner.jpg");
-        text-align: center;
-    }
-
-    h1 {
-        text-align: center;
-        margin-top: 20px;
-        color: #fff;
-        font-size: 40px;
-    }
-
-    /* ends */
 
 </style>
 <body>
 <div class="container-fluid">
     <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-dark" id="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <div class="headImg">
-                    <img src="https://logos-world.net/wp-content/uploads/2021/02/Trello-Logo.png"
-                         width="100" height="50">
+                    <img src="https://png.pngtree.com/png-vector/20190624/ourlarge/pngtree-managementprocessproductiontaskwork-flat-color-icon-vect-png-image_1492738.jpg"
+                         width="70px" height="60px">
                 </div>
-
+                <div class="collapse navbar-collapse">
+                    <div class="dropdown">
+                        <button>Group</button>
+                        <div class="dropdown-options">
+                            <a href="#">123</a>
+                            <a href="#">456</a>
+                            <a href="#">6576</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="headRight">
                     <span class="group-text">
                     <div class="collapse navbar-collapse">
-                      <i class="fa-solid fa-bell" style="color: #ffffff; margin-right: 15px"></i>
-                        <span class="dropdown">
-                            <button style="font-size: 15px" class="btn btn-light"><c:out value="${user.name}"/></button>
-                            <div class="dropdown-content">
-                                <div><a href="#">Setting</a></div>
-                                <div><a href="/homeUser?action=editUser&id=${user.id}">Edit</a></div>
-                                <div><a href="/updatePassword?login=updatePassword&id=${user.id}">Change PassWord</a></div>
-                                <div><a href="login.jsp">Logout</a></div>
-                            </div>
-                        </span>
+                      <i class="fa-solid fa-bell" style="color: #ffffff;font-size: 34px; margin-right: 10px"></i>
+                         <div class="dropdown">
+                        <button>Name</button>
+                        <div class="dropdown-options">
+                            <a href="#">Setting</a>
+                            <a href="/homeUser?action=editUser&id=${user.id}">Edit</a>
+                            <a href="/updatePassword?login=updatePassword&id=${user.id}">Change PassWord</a>
+                            <a href="login.jsp">Logout</a>
+                        </div>
+                    </div>
                     </div>
                     </span>
                 </div>
             </div>
         </nav>
     </div>
-    <div class="row" id="fullLeft">
+    <div class="row">
         <div class="col-2" id="boxLeft">
             <div class="table">
                 <div class="d-flex align-items-center">
-                    <i class="fa-solid fa-table" style="font-size: 30px"></i>
+                    <i class="fa-solid fa-table" style="color: #000000; font-size: 30px;"></i>
                     <span class="textSpan">Table</span>
                 </div>
             </div>
             <div class="group">
                 <div class="d-flex  align-items-center">
                     <div class="group_name">
-                        <i class="fa-solid fa-user-group" style="font-size: 30px"></i>
+                        <i class="fa-solid fa-user-group" style="color: #000000; font-size: 30px"></i>
                         <span class="textSpan">Group</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-2" id="boxLeft">
-                <div class="table">
-                    <div class="d-flex align-items-center">
-                        <i class="fa-solid fa-table" style="color: #000000; font-size: 30px;"></i>
-                        <span class="textSpan">Table</span>
-                    </div>
-                </div>
-                <div class="group">
-                    <div class="d-flex  align-items-center">
-                        <div class="group_name">
-                            <i class="fa-solid fa-user-group" style="color: #000000; font-size: 30px"></i>
-                            <span class="textSpan">Group</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="col-10">
+            <div id="member">
+                <h2 style="text-align: center; margin-top: 40px">Search member </h2>
             </div>
-            <div class="col-10">
-                <div id="member">
-                    <h2 style="text-align: center; margin-top: 40px">Search member </h2>
-                </div>
-                <p></p>
-                <a href="/homeUser?action=member&idGroup=<c:out value="${groups.id}"></c:out>">
-                    <input type="submit" value="Back">
-                </a>
-                <div id="search">
-                    <form class="d-flex" method="post" action="/homeUser?action=search&idGroup=<c:out value="${groups.id}"></c:out>">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                               name="search">
-                        <button class="btn btn-outline-success" type="submit" name="search">Search</button>
-                    </form>
-                </div>
-                <div class="table_all">
-                    <table class="table table-bordered">
-                        <c:forEach var="user" items="${list}">
-                            <tr>
-                                <td><img src="${user.avatar}"></td>
-                                <td>${user.name}</td>
-                                <td>${user.email}</td>
-                                <td>
-                                    <a href="/addMembers?action=addUser&id=${user.id}&idGroup=<c:out value="${groups.id}"></c:out>">
-                                        <button type="submit">Add</button>
-                                    </a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </div>
+            <p></p>
+            <a href="/homeUser?action=member&idGroup=${groups.id}&idUser=${user.id}">
+                <input type="submit" value="Back">
+            </a>
+            <div id="search">
+                <form class="d-flex" method="post" action="/homeUser?action=search&idGroup=<c:out value="${groups.id}"></c:out>">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                           name="search">
+                    <button class="btn btn-outline-success" type="submit" name="search">Search</button>
+                </form>
+            </div>
+            <div class="table_all">
+                <table class="table table-bordered">
+                    <c:forEach var="user" items="${list}">
+                        <tr>
+                            <td><img src="${user.avatar}"></td>
+                            <td>${user.name}</td>
+                            <td>${user.email}</td>
+                            <td>
+                                <a href="/addMembers?action=addUser&id=${user.id}&idGroup=<c:out value="${groups.id}"></c:out>">
+                                    <button type="submit">Add</button>
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
             </div>
         </div>
     </div>
