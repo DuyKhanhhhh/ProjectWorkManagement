@@ -195,7 +195,7 @@ public class AddUserToTableController extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("tables",table);
         try {
-            request.getRequestDispatcher("home/tableView.jsp").forward(request,response);
+            request.getRequestDispatcher("/column").forward(request,response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

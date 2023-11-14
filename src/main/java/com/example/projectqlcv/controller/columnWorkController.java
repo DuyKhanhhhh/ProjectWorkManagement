@@ -1,6 +1,9 @@
 package com.example.projectqlcv.controller;
 
 import com.example.projectqlcv.DAO.ColumnDAO;
+import com.example.projectqlcv.DAO.IUserDAO;
+import com.example.projectqlcv.DAO.UserDAO;
+import com.example.projectqlcv.model.AddUserToTable;
 import com.example.projectqlcv.model.Column;
 
 import javax.servlet.ServletException;
@@ -15,10 +18,12 @@ import java.util.List;
 @WebServlet(name = "columnWorkController", value = "/column")
 public class columnWorkController extends HttpServlet {
     ColumnDAO columnDAO = null;
+    IUserDAO iUserDAO = null;
 
     @Override
     public void init() throws ServletException {
         columnDAO = new ColumnDAO();
+        iUserDAO = new UserDAO();
     }
 
     @Override
@@ -76,7 +81,10 @@ public class columnWorkController extends HttpServlet {
     }
 
     private void showAllColumn(HttpServletRequest request, HttpServletResponse response) {
+        int idUser = Integer.parseInt(request.getParameter("idUser"));
         List<Column> listColumn= columnDAO.selectAllColumn();
+        AddUserToTable roleUserToTable = iUserDAO.findRoleUserToUserToTable(idUser);
+        request.setAttribute("roleUser",roleUserToTable);
         try {
             request.setAttribute("listColumn", listColumn);
             request.getRequestDispatcher("home/tableView.jsp").forward(request,response);
